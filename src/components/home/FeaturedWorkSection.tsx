@@ -220,7 +220,7 @@ export function FeaturedWorkSection() {
   return (
     <section ref={sectionRef} className="relative">
       {/* Sticky Header with Progress Dots */}
-      <div className="sticky top-0 z-30 bg-background border-b border-border/50 pt-4 pb-4">
+      <div className="sticky top-16 z-30 bg-background border-b border-border/50 pt-4 pb-4">
         <div className="container-wide">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
