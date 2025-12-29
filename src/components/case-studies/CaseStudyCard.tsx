@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clock, ArrowUpRight } from "lucide-react";
 import { CaseStudy } from "@/data/caseStudies";
@@ -9,16 +10,16 @@ interface CaseStudyCardProps {
 
 export function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
   return (
-    <motion.a
-      href={caseStudy.externalUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group block bg-card rounded-2xl overflow-hidden border border-border/50 hover-lift card-glow"
     >
+      <Link
+        to={`/case-studies/${caseStudy.id}`}
+        className="group block bg-card rounded-2xl overflow-hidden border border-border/50 hover-lift card-glow"
+      >
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
@@ -78,6 +79,7 @@ export function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
           <span className="text-xs text-muted-foreground">{caseStudy.date}</span>
         </div>
       </div>
-    </motion.a>
+      </Link>
+    </motion.div>
   );
 }
