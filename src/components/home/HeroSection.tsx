@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ParticleHero } from "./ParticleHero";
-import { ImpossibleTriangle } from "./ImpossibleTriangle";
+import { ImpossibleTriangleCSS } from "./ImpossibleTriangleCSS";
 
 export function HeroSection() {
   const scrollToEcosystem = () => {
@@ -57,9 +57,15 @@ export function HeroSection() {
             </div>
           </div>
           
-          {/* Right: Impossible Triangle */}
-          <div className="relative h-[400px] lg:h-[500px] hidden lg:block">
-            <ImpossibleTriangle />
+          {/* Right: Impossible Triangle CSS Animation */}
+          <div className="relative h-[400px] lg:h-[500px] hidden lg:flex items-center justify-center">
+            <ImpossibleTriangleCSS 
+              duration={8}
+              scale={1.2}
+              colorX="#8B0000"
+              colorY="#DC143C"
+              colorZ="#FFFFFF"
+            />
           </div>
         </div>
         
