@@ -105,7 +105,7 @@ function ShowcaseCard({ showcase, index }: { showcase: typeof showcases[0]; inde
     <motion.div
       ref={cardRef}
       style={{ opacity, y, scale }}
-      className="min-h-screen flex items-center py-20 sticky top-0"
+      className="min-h-screen flex items-center py-20 sticky top-0 bg-background"
     >
       <div className="container-wide">
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
