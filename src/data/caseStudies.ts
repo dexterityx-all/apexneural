@@ -56,18 +56,69 @@ export type Technology = typeof technologies[number];
 export type Industry = typeof industries[number];
 export type ServiceType = typeof serviceTypes[number];
 
-// Team member avatars
+// Team member avatars with correct URLs from the website
 const teamAvatars = {
-  hansika: "https://website.apexneural.cloud/assets/img/team/hansika.jpg",
-  parmeet: "https://website.apexneural.cloud/assets/img/team/parmeet.jpg",
-  kushal: "https://website.apexneural.cloud/assets/img/team/kushal.jpg",
-  rahul: "https://website.apexneural.cloud/assets/img/team/rahul.jpg",
-  sunny: "https://website.apexneural.cloud/assets/img/team/sunny.jpg",
-  akshay: "https://website.apexneural.cloud/assets/img/team/akshay.jpg",
-  vedant: "https://website.apexneural.cloud/assets/img/team/vedant.jpg",
-  shubham: "https://website.apexneural.cloud/assets/img/team/shubham.jpg",
-  ramya: "https://website.apexneural.cloud/assets/img/team/ramya.jpg",
-  likhith: "https://website.apexneural.cloud/assets/img/team/likhith.jpg",
+  hansika: "https://website.apexneural.cloud/assets/img/team/hansika.jpeg",
+  parmeet: "https://website.apexneural.cloud/assets/img/team/Parmeet.jpg",
+  kushal: "https://website.apexneural.cloud/assets/img/team/Kushal.jpg",
+  rahul: "https://website.apexneural.cloud/assets/img/team/Rahul.jpg",
+  sunny: "https://website.apexneural.cloud/assets/img/team/Sunny.jpg",
+  akshay: "https://website.apexneural.cloud/assets/img/team/Akshay.png",
+  vedant: "https://website.apexneural.cloud/assets/img/team/Vedant.jpg",
+  shubham: "https://website.apexneural.cloud/assets/img/team/Shubham.png",
+  ramya: "https://website.apexneural.cloud/assets/img/team/ramya.jpeg",
+  likhith: "https://website.apexneural.cloud/assets/img/team/Likhith.jpg",
+};
+
+// Case study card images - using high-quality Unsplash images
+const caseStudyImages = {
+  agenticAI: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
+  socialMedia: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
+  webCrawl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop",
+  codeReview: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop",
+  learning: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop",
+  legal: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=500&fit=crop",
+  automation: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=500&fit=crop",
+  memory: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=500&fit=crop",
+  conversation: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=500&fit=crop",
+  healthcare: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=500&fit=crop",
+  family: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+  recruitment: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=500&fit=crop",
+  voice: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=800&h=500&fit=crop",
+  document: "https://images.unsplash.com/photo-1568667256549-094345857637?w=800&h=500&fit=crop",
+  graph: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+  video: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=500&fit=crop",
+  sports: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&h=500&fit=crop",
+  legalTech: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=500&fit=crop",
+  insurance: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop",
+  docs: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=500&fit=crop",
+  assistant: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=500&fit=crop",
+  crossModal: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=500&fit=crop",
+  notebook: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=500&fit=crop",
+  finance: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop",
+  research: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=500&fit=crop",
+  nudges: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+  ocr: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=500&fit=crop",
+  saas: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+  ebooks: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=500&fit=crop",
+  courses: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=500&fit=crop",
+  database: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop",
+  sportsAI: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+  privateRAG: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop",
+  researchFlow: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop",
+  scraping: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop",
+  linkedin: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&h=500&fit=crop",
+  validation: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=500&fit=crop",
+  payment: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
+  mcp: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=500&fit=crop",
+  toon: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=500&fit=crop",
+  gpu: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=800&h=500&fit=crop",
+  comfyui: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=500&fit=crop",
+  character: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&h=500&fit=crop",
+  ipAdapter: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=800&h=500&fit=crop",
+  prompting: "https://images.unsplash.com/photo-1676299081847-824916de030a?w=800&h=500&fit=crop",
+  context: "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&h=500&fit=crop",
+  multiplatform: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=500&fit=crop",
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -80,7 +131,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Platform Development",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/agentic-ai-labeling.png",
+    image: caseStudyImages.agenticAI,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Dec 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/agentic-ai-labeling"
@@ -94,7 +145,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Product Build",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/content-phase-ai-platform.png",
+    image: caseStudyImages.socialMedia,
     author: { name: "Parmeet Singh", avatar: teamAvatars.parmeet },
     date: "Dec 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/content-phase-ai-platform"
@@ -108,7 +159,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Platform Development",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/firecrawl-agentic-rag.png",
+    image: caseStudyImages.webCrawl,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Dec 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/firecrawl-agentic-rag"
@@ -122,7 +173,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Platform Development",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/code-improvement-platform.png",
+    image: caseStudyImages.codeReview,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Dec 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/code-improvement-platform"
@@ -136,7 +187,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "EdTech",
     serviceType: "Product Build",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/triverse-academy.png",
+    image: caseStudyImages.learning,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Dec 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/triverse-academy"
@@ -150,7 +201,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "LegalTech",
     serviceType: "AI Agent Development",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/paralegal-ai-assistant.png",
+    image: caseStudyImages.legal,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Nov 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/paralegal-ai-assistant"
@@ -164,7 +215,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Product Build",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/motia-content-creation.png",
+    image: caseStudyImages.automation,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Nov 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/motia-content-creation"
@@ -178,7 +229,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "AI Agent Development",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/zep-memory-assistant.png",
+    image: caseStudyImages.memory,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Nov 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/zep-memory-assistant"
@@ -192,7 +243,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "AI Agent Development",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/parlant-conversational-agent.png",
+    image: caseStudyImages.conversation,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Nov 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/parlant-conversational-agent"
@@ -206,7 +257,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Healthcare",
     serviceType: "Research & Prototype",
     readTime: "12 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/galactic-toxicity-intelligence-engine.png",
+    image: caseStudyImages.healthcare,
     author: { name: "Sunny", avatar: teamAvatars.sunny },
     date: "Nov 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/galactic-toxicity-intelligence-engine"
@@ -220,7 +271,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Family & Consumer",
     serviceType: "Product Build",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/kutum-family-information-os.png",
+    image: caseStudyImages.family,
     author: { name: "Kushal Kumar", avatar: teamAvatars.kushal },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/kutum-family-information-os"
@@ -234,7 +285,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Product Build",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/prism-recruitment-automation.png",
+    image: caseStudyImages.recruitment,
     author: { name: "Akshay", avatar: teamAvatars.akshay },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/prism-recruitment-automation"
@@ -248,7 +299,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "AI Agent Development",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/real-time-rag-voice-agent.png",
+    image: caseStudyImages.voice,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/real-time-rag-voice-agent"
@@ -262,7 +313,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Data Engineering",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/groundx-document-processing.png",
+    image: caseStudyImages.document,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/groundx-document-processing"
@@ -276,7 +327,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Research & Prototype",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/graphiti-mcp-demo.png",
+    image: caseStudyImages.graph,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/graphiti-mcp-demo"
@@ -290,7 +341,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Product Build",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/veo3-ai-video-production.png",
+    image: caseStudyImages.video,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Oct 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/veo3-ai-video-production"
@@ -304,7 +355,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Sports Tech",
     serviceType: "Product Build",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/volleyvision-sports-ai.png",
+    image: caseStudyImages.sports,
     author: { name: "Shubham Rathod", avatar: teamAvatars.shubham },
     date: "Sep 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/volleyvision-sports-ai"
@@ -318,7 +369,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "LegalTech",
     serviceType: "AI Agent Development",
     readTime: "11 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/legalops-hub-malaysia.png",
+    image: caseStudyImages.legalTech,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Sep 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/legalops-hub-malaysia"
@@ -332,7 +383,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "InsurTech",
     serviceType: "AI Agent Development",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/recovery-copilot.png",
+    image: caseStudyImages.insurance,
     author: { name: "Ramya", avatar: teamAvatars.ramya },
     date: "Sep 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/recovery-copilot"
@@ -346,7 +397,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Product Build",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/documentation-writer-flow.png",
+    image: caseStudyImages.docs,
     author: { name: "Ramya", avatar: teamAvatars.ramya },
     date: "Sep 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/documentation-writer-flow"
@@ -360,7 +411,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "AI Agent Development",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/ultimate-ai-assistant-using-mcp.png",
+    image: caseStudyImages.assistant,
     author: { name: "Ramya", avatar: teamAvatars.ramya },
     date: "Sep 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/ultimate-ai-assistant-using-mcp"
@@ -374,7 +425,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Product Build",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/aitv-cross-modal-generation.png",
+    image: caseStudyImages.crossModal,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Aug 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/aitv-cross-modal-generation"
@@ -388,7 +439,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Research",
     serviceType: "Product Build",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/notebook-lm-clone.png",
+    image: caseStudyImages.notebook,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Aug 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/notebook-lm-clone"
@@ -402,7 +453,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "FinTech",
     serviceType: "AI Agent Development",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/stock-portfolio-analysis-agent.png",
+    image: caseStudyImages.finance,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Aug 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/stock-portfolio-analysis-agent"
@@ -416,7 +467,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Research",
     serviceType: "AI Agent Development",
     readTime: "11 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/agentic-deep-researcher.png",
+    image: caseStudyImages.research,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Aug 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/agentic-deep-researcher"
@@ -430,7 +481,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Family & Consumer",
     serviceType: "Product Build",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/kutum-ai-nudges-engine.png",
+    image: caseStudyImages.nudges,
     author: { name: "Kushal Kumar", avatar: teamAvatars.kushal },
     date: "Aug 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/kutum-ai-nudges-engine"
@@ -444,7 +495,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Family & Consumer",
     serviceType: "Product Build",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/kutum-ocr-document-processing.png",
+    image: caseStudyImages.ocr,
     author: { name: "Kushal Kumar", avatar: teamAvatars.kushal },
     date: "Jul 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/kutum-ocr-document-processing"
@@ -458,7 +509,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Infrastructure",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/apex-saas-framework.png",
+    image: caseStudyImages.saas,
     author: { name: "Likhith Masura", avatar: teamAvatars.likhith },
     date: "Jul 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/apex-saas-framework"
@@ -472,7 +523,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "EdTech",
     serviceType: "Product Build",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/dbaas-e-books.png",
+    image: caseStudyImages.ebooks,
     author: { name: "Likhith Masura", avatar: teamAvatars.likhith },
     date: "Jul 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/dbaas-e-books"
@@ -486,7 +537,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "EdTech",
     serviceType: "Product Build",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/dbaas-e-courses.png",
+    image: caseStudyImages.courses,
     author: { name: "Likhith Masura", avatar: teamAvatars.likhith },
     date: "Jul 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/dbaas-e-courses"
@@ -500,7 +551,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Infrastructure",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/dbaas-platform.png",
+    image: caseStudyImages.database,
     author: { name: "Likhith Masura", avatar: teamAvatars.likhith },
     date: "Jun 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/dbaas-platform"
@@ -514,7 +565,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Sports Tech",
     serviceType: "Platform Development",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/champions-gen-sports-ai.png",
+    image: caseStudyImages.sportsAI,
     author: { name: "Parmeet Singh", avatar: teamAvatars.parmeet },
     date: "Jun 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/champions-gen-sports-ai"
@@ -528,7 +579,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Platform Development",
     readTime: "11 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/private-agentic-rag-api.png",
+    image: caseStudyImages.privateRAG,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Jun 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/private-agentic-rag-api"
@@ -542,7 +593,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Research",
     serviceType: "Platform Development",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/researchflow-mcp.png",
+    image: caseStudyImages.researchFlow,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "May 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/researchflow-mcp"
@@ -556,7 +607,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Data Engineering",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/scalescrape-visual-extraction.png",
+    image: caseStudyImages.scraping,
     author: { name: "Shubham Rathod", avatar: teamAvatars.shubham },
     date: "May 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/scalescrape-visual-extraction"
@@ -570,7 +621,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Data Engineering",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/linkedin-job-scraper-apify.png",
+    image: caseStudyImages.linkedin,
     author: { name: "Shubham Rathod", avatar: teamAvatars.shubham },
     date: "May 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/linkedin-job-scraper-apify"
@@ -584,7 +635,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Integration & API",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/pydantic-schema-validation.png",
+    image: caseStudyImages.validation,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Apr 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/pydantic-schema-validation"
@@ -598,7 +649,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "FinTech",
     serviceType: "Integration & API",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/payment-api-integration.png",
+    image: caseStudyImages.payment,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Apr 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/payment-api-integration"
@@ -612,7 +663,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Research & Prototype",
     readTime: "12 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/claude-mcp-integration-guide.png",
+    image: caseStudyImages.mcp,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Apr 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/claude-mcp-integration-guide"
@@ -626,7 +677,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Research & Prototype",
     readTime: "6 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/toon-json-prompting.png",
+    image: caseStudyImages.toon,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Mar 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/toon-json-prompting"
@@ -640,7 +691,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Infrastructure",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/runpod-serverless-gpu.png",
+    image: caseStudyImages.gpu,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Mar 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/runpod-serverless-gpu"
@@ -654,7 +705,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Research & Prototype",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/comfyui-advanced-workflows.png",
+    image: caseStudyImages.comfyui,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Feb 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/comfyui-advanced-workflows"
@@ -668,7 +719,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Research & Prototype",
     readTime: "10 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/character-consistency-genai.png",
+    image: caseStudyImages.character,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Feb 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/character-consistency-genai"
@@ -682,7 +733,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Content & Media",
     serviceType: "Research & Prototype",
     readTime: "8 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/ip-adapter-style-transfer.png",
+    image: caseStudyImages.ipAdapter,
     author: { name: "Vedant Pai", avatar: teamAvatars.vedant },
     date: "Jan 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/ip-adapter-style-transfer"
@@ -696,7 +747,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Research & Prototype",
     readTime: "7 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/guidelines-vs-traditional-prompt.png",
+    image: caseStudyImages.prompting,
     author: { name: "Rahul", avatar: teamAvatars.rahul },
     date: "Jan 2024",
     externalUrl: "https://website.apexneural.cloud/case-studies/guidelines-vs-traditional-prompt"
@@ -710,7 +761,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Enterprise",
     serviceType: "Research & Prototype",
     readTime: "9 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/context-engineering-workflow.png",
+    image: caseStudyImages.context,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Dec 2023",
     externalUrl: "https://website.apexneural.cloud/case-studies/context-engineering-workflow"
@@ -724,7 +775,7 @@ export const caseStudies: CaseStudy[] = [
     industry: "Research",
     serviceType: "AI Agent Development",
     readTime: "11 min read",
-    image: "https://website.apexneural.cloud/assets/img/case-studies/multiplatform-deep-researcher.png",
+    image: caseStudyImages.multiplatform,
     author: { name: "Hansika", avatar: teamAvatars.hansika },
     date: "Dec 2023",
     externalUrl: "https://website.apexneural.cloud/case-studies/multiplatform-deep-researcher"
