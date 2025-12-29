@@ -150,12 +150,6 @@ export default function Ecosystem() {
         </div>
       </section>
 
-      {/* Client Logos Section */}
-      <ClientLogosSection />
-
-      {/* Integration Capabilities Section */}
-      <IntegrationsSection />
-
       {/* Investment Philosophy / Portfolios Section */}
       <InvestmentPhilosophy />
 
@@ -192,6 +186,12 @@ export default function Ecosystem() {
 
       {/* Featured Case Studies */}
       <FeaturedCaseStudies />
+
+      {/* Client Logos Section */}
+      <ClientLogosSection />
+
+      {/* Integration Capabilities Section */}
+      <IntegrationsSection />
 
       {/* CTA Section */}
       <section className="py-24 bg-surface">
