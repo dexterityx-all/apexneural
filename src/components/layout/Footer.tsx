@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, Twitter } from "lucide-react";
+import logoDark from "@/assets/logo-dark.png";
+import logoWhite from "@/assets/logo-white.png";
+import { useEffect, useState } from "react";
 
 const footerLinks = {
   ecosystem: [
@@ -26,6 +29,18 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkDark = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <footer className="border-t border-border bg-surface">
       <div className="container-wide section-padding">
@@ -34,9 +49,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block">
-              <span className="text-2xl font-serif font-medium tracking-tight">
-                Apex<span className="text-primary">Neural</span>
-              </span>
+              <img 
+                src={isDark ? logoWhite : logoDark} 
+                alt="ApexNeural" 
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
               Building ecosystems together. We invest, build, and partner to create 

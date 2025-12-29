@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoDark from "@/assets/logo-dark.png";
+import logoWhite from "@/assets/logo-white.png";
 
 const navigation = [
   { name: "Ecosystem", href: "/ecosystem" },
@@ -56,11 +58,13 @@ export function Header() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2"
+            className="flex items-center"
           >
-            <span className="text-2xl font-serif font-medium tracking-tight">
-              Apex<span className="text-primary">Neural</span>
-            </span>
+            <img 
+              src={isDark ? logoWhite : logoDark} 
+              alt="ApexNeural" 
+              className="h-10 w-auto"
+            />
           </motion.div>
         </Link>
 
