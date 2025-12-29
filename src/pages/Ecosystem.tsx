@@ -20,6 +20,8 @@ import { InvestmentPhilosophy } from "@/components/ecosystem/InvestmentPhilosoph
 import { DBaaSSection } from "@/components/ecosystem/DBaaSSection";
 import { FeaturedCaseStudies } from "@/components/ecosystem/FeaturedCaseStudies";
 import { LogoMarquee } from "@/components/ecosystem/LogoMarquee";
+import { ClientLogosSection } from "@/components/ecosystem/ClientLogosSection";
+import { IntegrationsSection } from "@/components/ecosystem/IntegrationsSection";
 
 const synergies = [
   {
@@ -147,6 +149,12 @@ export default function Ecosystem() {
           </div>
         </div>
       </section>
+
+      {/* Client Logos Section */}
+      <ClientLogosSection />
+
+      {/* Integration Capabilities Section */}
+      <IntegrationsSection />
 
       {/* Investment Philosophy / Portfolios Section */}
       <InvestmentPhilosophy />
