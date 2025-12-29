@@ -17,10 +17,10 @@ const capabilities = [
     description:
       "Autonomous AI agents that reason, plan, and execute complex multi-step tasks with minimal human intervention.",
     caseStudies: [
-      { name: "Data Labeling", url: "/case-studies/agentic-data-labeling" },
-      { name: "FireCrawl RAG", url: "/case-studies/firecrawl-rag" },
-      { name: "Paralegal AI", url: "/case-studies/paralegal-ai" },
-      { name: "Deep Researcher", url: "/case-studies/deep-researcher" },
+      { name: "Data Labeling", url: "/case-studies/agentic-ai-labeling" },
+      { name: "FireCrawl RAG", url: "/case-studies/firecrawl-agentic-rag" },
+      { name: "Paralegal AI", url: "/case-studies/paralegal-ai-assistant" },
+      { name: "Deep Researcher", url: "/case-studies/agentic-deep-researcher" },
     ],
   },
   {
@@ -30,8 +30,8 @@ const capabilities = [
       "End-to-end workflow automation that reduces operational costs and eliminates manual bottlenecks.",
     caseStudies: [
       { name: "PRISM Recruitment", url: "/case-studies/prism-recruitment-automation" },
-      { name: "Kutum AI Nudges", url: "/case-studies/kutum-ai-nudges" },
-      { name: "Content Factory", url: "/case-studies/content-factory" },
+      { name: "Kutum AI Nudges", url: "/case-studies/kutum-ai-nudges-engine" },
+      { name: "Content Phase", url: "/case-studies/content-phase-ai-platform" },
       { name: "DBaaS Platform", url: "/case-studies/dbaas-platform" },
     ],
   },
@@ -42,7 +42,7 @@ const capabilities = [
       "Advanced visual intelligence for sports analytics, document processing, and real-time detection.",
     caseStudies: [
       { name: "VolleyVision", url: "/case-studies/volleyvision-sports-ai" },
-      { name: "ScaleScrape", url: "/case-studies/scalescrape-visual" },
+      { name: "ScaleScrape", url: "/case-studies/scalescrape-visual-extraction" },
       { name: "ChampionsGen", url: "/case-studies/champions-gen-sports-ai" },
     ],
   },
@@ -52,8 +52,8 @@ const capabilities = [
     description:
       "Natural language interfaces that understand context, intent, and deliver meaningful interactions.",
     caseStudies: [
-      { name: "Parlant Financial", url: "/case-studies/parlant-financial-ai" },
-      { name: "Voice Agent", url: "/case-studies/realtime-voice-agent" },
+      { name: "Parlant Financial", url: "/case-studies/parlant-conversational-agent" },
+      { name: "Voice Agent", url: "/case-studies/real-time-rag-voice-agent" },
       { name: "Zep Memory", url: "/case-studies/zep-memory-assistant" },
     ],
   },
@@ -63,9 +63,9 @@ const capabilities = [
     description:
       "Retrieval-augmented generation that grounds AI responses in your proprietary knowledge base.",
     caseStudies: [
-      { name: "FireCrawl RAG", url: "/case-studies/firecrawl-rag" },
-      { name: "NotebookLM Clone", url: "/case-studies/notebooklm-clone" },
-      { name: "GroundX Docs", url: "/case-studies/groundx-document-ai" },
+      { name: "FireCrawl RAG", url: "/case-studies/firecrawl-agentic-rag" },
+      { name: "NotebookLM Clone", url: "/case-studies/notebook-lm-clone" },
+      { name: "GroundX Docs", url: "/case-studies/groundx-document-processing" },
     ],
   },
   {
@@ -74,9 +74,9 @@ const capabilities = [
     description:
       "AI-powered insights that transform data into strategic decisions and predictive capabilities.",
     caseStudies: [
-      { name: "Stock Portfolio", url: "/case-studies/stock-portfolio-agent" },
+      { name: "Stock Portfolio", url: "/case-studies/stock-portfolio-analysis-agent" },
       { name: "RecoveryCopilot", url: "/case-studies/recovery-copilot" },
-      { name: "Risk Analytics", url: "/case-studies/risk-analytics" },
+      { name: "Galactic AI", url: "/case-studies/galactic-toxicity-intelligence-engine" },
     ],
   },
 ];
