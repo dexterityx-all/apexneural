@@ -95,20 +95,19 @@ function ShowcaseCard({ showcase, index }: { showcase: typeof showcases[0]; inde
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [60, 0, 0, -60]);
 
   const IconComponent = showcase.icon;
 
   return (
     <motion.div
       ref={cardRef}
-      style={{ opacity, y, scale }}
-      className="min-h-screen flex items-center py-20 sticky top-0 bg-background"
+      style={{ opacity, y }}
+      className="min-h-[70vh] flex items-center py-12 sticky top-[20vh] bg-background"
     >
       <div className="container-wide">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
           {/* Content */}
           <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
             <div className="flex items-center gap-3">
@@ -212,34 +211,61 @@ function ShowcaseCard({ showcase, index }: { showcase: typeof showcases[0]; inde
 }
 
 export function FeaturedWorkSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
-    <section className="relative">
-      {/* Header */}
-      <div className="section-padding">
-        <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8"
-          >
+    <section ref={sectionRef} className="relative">
+      {/* Sticky Header with Progress */}
+      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border/50">
+        <div className="container-wide py-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground">
                 Featured Work
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mt-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold mt-2">
                 Where Hard AI Meets{" "}
                 <span className="italic text-primary">Real Impact</span>
               </h2>
             </div>
-            <Button variant="outline" asChild>
-              <Link to="/case-studies" className="group">
-                View All Projects
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-          </motion.div>
+            <div className="flex items-center gap-6">
+              {/* Progress Indicator */}
+              <div className="hidden md:flex items-center gap-3">
+                <span className="text-sm text-muted-foreground font-mono">Progress</span>
+                <div className="w-32 h-1.5 bg-muted rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-primary rounded-full"
+                    style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
+                  />
+                </div>
+                <div className="flex gap-1.5">
+                  {showcases.map((_, index) => (
+                    <motion.div
+                      key={index}
+                      className="w-2 h-2 rounded-full bg-muted"
+                      style={{
+                        backgroundColor: useTransform(
+                          scrollYProgress,
+                          [index / showcases.length, (index + 0.5) / showcases.length],
+                          ["hsl(var(--muted))", "hsl(var(--primary))"]
+                        ),
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/case-studies" className="group">
+                  View All
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
