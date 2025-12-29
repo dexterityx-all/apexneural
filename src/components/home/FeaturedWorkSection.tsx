@@ -219,9 +219,9 @@ export function FeaturedWorkSection() {
 
   return (
     <section ref={sectionRef} className="relative">
-      {/* Sticky Header with Progress */}
-      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="container-wide py-6">
+      {/* Sticky Header with Progress Dots */}
+      <div className="sticky top-0 z-30 bg-background border-b border-border/50 pt-4 pb-4">
+        <div className="container-wide">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground">
@@ -233,30 +233,26 @@ export function FeaturedWorkSection() {
               </h2>
             </div>
             <div className="flex items-center gap-6">
-              {/* Progress Indicator */}
-              <div className="hidden md:flex items-center gap-3">
-                <span className="text-sm text-muted-foreground font-mono">Progress</span>
-                <div className="w-32 h-1.5 bg-muted rounded-full overflow-hidden">
+              {/* Progress Dots */}
+              <div className="flex items-center gap-2">
+                {showcases.map((_, index) => (
                   <motion.div
-                    className="h-full bg-primary rounded-full"
-                    style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
+                    key={index}
+                    className="w-3 h-3 rounded-full border-2 border-muted-foreground/30 transition-colors"
+                    style={{
+                      backgroundColor: useTransform(
+                        scrollYProgress,
+                        [index / showcases.length, (index + 0.5) / showcases.length],
+                        ["transparent", "hsl(var(--primary))"]
+                      ),
+                      borderColor: useTransform(
+                        scrollYProgress,
+                        [index / showcases.length, (index + 0.5) / showcases.length],
+                        ["hsl(var(--muted-foreground) / 0.3)", "hsl(var(--primary))"]
+                      ),
+                    }}
                   />
-                </div>
-                <div className="flex gap-1.5">
-                  {showcases.map((_, index) => (
-                    <motion.div
-                      key={index}
-                      className="w-2 h-2 rounded-full bg-muted"
-                      style={{
-                        backgroundColor: useTransform(
-                          scrollYProgress,
-                          [index / showcases.length, (index + 0.5) / showcases.length],
-                          ["hsl(var(--muted))", "hsl(var(--primary))"]
-                        ),
-                      }}
-                    />
-                  ))}
-                </div>
+                ))}
               </div>
               <Button variant="outline" size="sm" asChild>
                 <Link to="/case-studies" className="group">
