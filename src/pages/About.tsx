@@ -1,18 +1,12 @@
+import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   ArrowRight,
-  Users,
-  Settings,
-  Cpu,
-  Globe,
-  Package,
-  Sparkles,
-  Target,
-  Eye,
   Shield,
+  Target,
   RefreshCw,
-  Lightbulb,
+  Eye,
   ExternalLink
 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -24,6 +18,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+
+const VisionGlobe = lazy(() => import("@/components/about/VisionGlobe"));
+const VectorSpace = lazy(() => import("@/components/about/VectorSpace"));
 
 const coreValues = [
   {
@@ -43,54 +40,12 @@ const coreValues = [
   },
 ];
 
-const capabilityVectors = [
-  {
-    icon: Users,
-    title: "People",
-    description: "Upskilling at pace; structured training paths; hands-on labs.",
-    category: "capability",
-  },
-  {
-    icon: Settings,
-    title: "Process",
-    description: "Industry best practices; governance, QA, PMO; measurable SLAs.",
-    category: "capability",
-  },
-  {
-    icon: Cpu,
-    title: "Technology",
-    description: "Modern, composable stack; secure by design; cloud or on-prem.",
-    category: "capability",
-  },
-];
-
-const flywheelVectors = [
-  {
-    icon: Globe,
-    title: "Community",
-    description: "Events, cohorts, and collaborations that build talent and demand.",
-    category: "flywheel",
-  },
-  {
-    icon: Sparkles,
-    title: "Distribution",
-    description: "Partner and community reach to accelerate adoption.",
-    category: "flywheel",
-  },
-  {
-    icon: Package,
-    title: "Products",
-    description: "Outcome-driven components and accelerators targeting real pain points.",
-    category: "flywheel",
-  },
-];
-
-const founders = [
+const leadership = [
   {
     name: "Arghya Basu",
     role: "Co-Founder",
     image: "https://website.apexneural.cloud/assets/img/founders-img/arghya.png",
-    bio: "With 15 years across healthcare and technology, Arghya has had the privilege of contributing to organizations like Google and Sify Technologies. He co-founded CORE Diagnostics, where he helped build a specialized pathology lab focused on oncology and data-driven diagnostics. Grateful for the journey of learning in fundraising, business strategy, and healthcare innovation.",
+    bio: "With 15 years across healthcare and technology, Arghya has had the privilege of contributing to organizations like Google and Sify Technologies. He co-founded CORE Diagnostics, where he helped build a specialized pathology lab focused on oncology and data-driven diagnostics. Grateful for the journey of learning in fundraising, business strategy, and healthcare innovation. He successfully sold CORE Diagnostics to Metropolis Healthcare.",
     education: "B.Tech (JNTU), MBA (TAPMI)",
     featuredLink: {
       text: "Featured in The Hindu",
@@ -101,22 +56,22 @@ const founders = [
     name: "Anshul Jain",
     role: "Co-Founder & CEO",
     image: "https://website.apexneural.cloud/assets/img/founders-img/anshul.png",
-    bio: "Over a decade in IT services and Salesforce consulting, Anshul has been fortunate to build and lead teams focused on delivering client value. He played a role in ABSYZ's journey from a bootstrapped startup to its merger with Youngsoft Inc. Blessed to have learned from every team member and client along the way.",
+    bio: "Over a decade in IT services and Salesforce consulting, Anshul has been fortunate to build and lead teams focused on delivering client value. He played a key role in ABSYZ's journey from a bootstrapped startup to its successful acquisition by Youngsoft Inc. Blessed to have learned from every team member and client along the way, his focus remains on building lasting relationships and sustainable growth.",
     education: "MBA (TAPMI), Columbia Business School",
     featuredLink: {
       text: "TAPMI Alumni Feature",
       url: "https://www.tapmi.edu.in/coe/coe-bengaluru/alumni/",
     },
   },
+  {
+    name: "JP Botta",
+    role: "Chairman",
+    image: "/images/team/jp-botta.jpg",
+    bio: "With 15 years of leadership across shipping, hospitality, and management services, JP brings a wealth of cross-industry perspective to APEXneural's strategic direction. His focus on mentorship, ethical leadership, and governance excellence helps guide the company's long-term vision and values. He brings invaluable experience from serving on multiple advisory boards and institutional committees.",
+    education: "",
+    featuredLink: null,
+  },
 ];
-
-const advisor = {
-  name: "JP Botta",
-  role: "Strategic Advisor",
-  image: "/images/team/jp-botta.jpg",
-  bio: "With 15 years of leadership across shipping, hospitality, and management services, JP brings a wealth of cross-industry perspective to our strategic decisions. His focus on mentorship, ethical leadership, and governance excellence helps guide APEXneural's long-term vision and values.",
-  expertise: ["Strategic Advisory", "Governance", "Mentorship", "Cross-Industry Leadership"],
-};
 
 export default function About() {
   return (
@@ -181,7 +136,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Story Section */}
+      {/* Our Story Section with Vision Globe */}
       <section className="py-16 bg-surface">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -216,10 +171,21 @@ export default function About() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 p-8 flex items-center justify-center">
-                <div className="text-center">
-                  <Lightbulb className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <p className="text-2xl font-serif italic text-foreground">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden">
+                <Suspense fallback={
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-full bg-primary/20 animate-pulse mx-auto mb-4" />
+                      <p className="text-xl font-serif italic text-foreground">
+                        "Reimagine the future with AI"
+                      </p>
+                    </div>
+                  </div>
+                }>
+                  <VisionGlobe />
+                </Suspense>
+                <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none">
+                  <p className="text-lg font-serif italic text-foreground/80">
                     "Reimagine the future with AI"
                   </p>
                 </div>
@@ -316,7 +282,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Six Vectors Section */}
+      {/* Six Vectors Section with 3D Visualization */}
       <section className="py-20 bg-surface">
         <div className="container-wide">
           <motion.div
@@ -324,7 +290,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <span className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground">
               Our Framework
@@ -338,69 +304,17 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Capability System */}
-          <div className="mb-12">
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-lg font-mono uppercase tracking-wider text-muted-foreground mb-6"
-            >
-              Capability System
-            </motion.h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {capabilityVectors.map((vector, index) => (
-                <motion.div
-                  key={vector.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-6 rounded-xl bg-card border border-border/50 hover:border-primary/30 transition-colors"
-                >
-                  <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4">
-                    <vector.icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <h4 className="font-serif text-lg mb-2">{vector.title}</h4>
-                  <p className="text-sm text-muted-foreground">{vector.description}</p>
-                </motion.div>
-              ))}
+          <Suspense fallback={
+            <div className="h-[400px] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
             </div>
-          </div>
-
-          {/* Flywheel Effect */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-lg font-mono uppercase tracking-wider text-muted-foreground mb-6"
-            >
-              Flywheel Effect
-            </motion.h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {flywheelVectors.map((vector, index) => (
-                <motion.div
-                  key={vector.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-6 rounded-xl bg-card border border-border/50 hover:border-ecosystem-products/30 transition-colors"
-                >
-                  <div className="p-3 rounded-lg bg-ecosystem-products/10 w-fit mb-4">
-                    <vector.icon className="h-5 w-5 text-ecosystem-products" />
-                  </div>
-                  <h4 className="font-serif text-lg mb-2">{vector.title}</h4>
-                  <p className="text-sm text-muted-foreground">{vector.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          }>
+            <VectorSpace />
+          </Suspense>
         </div>
       </section>
 
-      {/* Founders Section */}
+      {/* Leadership Section */}
       <section className="section-padding">
         <div className="container-wide">
           <motion.div
@@ -414,105 +328,81 @@ export default function About() {
               Leadership
             </span>
             <h2 className="text-3xl md:text-4xl font-serif mt-4">
-              Meet the <span className="italic text-primary">Founders</span>
+              The People Behind <span className="italic text-primary">APEXneural</span>
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {founders.map((founder, index) => (
+          {/* Founders Row */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+            {leadership.slice(0, 2).map((person, index) => (
               <motion.div
-                key={founder.name}
+                key={person.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors"
+                className="p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors h-full"
               >
                 <div className="flex items-start gap-6 mb-6">
                   <img
-                    src={founder.image}
-                    alt={founder.name}
+                    src={person.image}
+                    alt={person.name}
                     className="w-24 h-24 rounded-xl object-cover"
                   />
                   <div>
-                    <h3 className="text-xl font-serif">{founder.name}</h3>
-                    <p className="text-primary text-sm">{founder.role}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{founder.education}</p>
+                    <h3 className="text-xl font-serif">{person.name}</h3>
+                    <p className="text-primary text-sm">{person.role}</p>
+                    {person.education && (
+                      <p className="text-xs text-muted-foreground mt-1">{person.education}</p>
+                    )}
                   </div>
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  {founder.bio}
+                  {person.bio}
                 </p>
-                <a
-                  href={founder.featuredLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
-                >
-                  <span>{founder.featuredLink.text}</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+                {person.featuredLink && (
+                  <a
+                    href={person.featuredLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    <span>{person.featuredLink.text}</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Strategic Advisory Section */}
-      <section className="py-20 bg-surface">
-        <div className="container-wide">
+          {/* Chairman Row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <span className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground">
-              Guided by Experience
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif mt-4">
-              Strategic <span className="italic text-primary">Advisory</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mx-auto p-8 rounded-2xl bg-card border border-border/50"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-2xl mx-auto p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-colors"
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
               <img
-                src={advisor.image}
-                alt={advisor.name}
+                src={leadership[2].image}
+                alt={leadership[2].name}
                 className="w-28 h-28 rounded-xl object-cover"
               />
               <div className="text-center sm:text-left">
-                <h3 className="text-xl font-serif">{advisor.name}</h3>
-                <p className="text-primary text-sm mb-3">{advisor.role}</p>
-                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                  {advisor.expertise.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-1 text-xs rounded-full bg-muted text-muted-foreground"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                <h3 className="text-xl font-serif">{leadership[2].name}</h3>
+                <p className="text-primary text-sm">{leadership[2].role}</p>
               </div>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed text-center sm:text-left">
-              {advisor.bio}
+              {leadership[2].bio}
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding">
+      <section className="section-padding bg-surface">
         <div className="container-wide">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
