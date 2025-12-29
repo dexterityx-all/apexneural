@@ -5,12 +5,12 @@ import * as THREE from "three";
 import { motion } from "framer-motion";
 
 const vectors = [
-  { name: "People", color: "#6366f1", position: [1.5, 1.2, 0.5] as [number, number, number], category: "capability" },
-  { name: "Process", color: "#8b5cf6", position: [-0.8, 1.5, 0.8] as [number, number, number], category: "capability" },
-  { name: "Technology", color: "#a855f7", position: [0.5, 0.8, 1.5] as [number, number, number], category: "capability" },
-  { name: "Community", color: "#06b6d4", position: [-1.3, -0.5, 1.2] as [number, number, number], category: "flywheel" },
-  { name: "Distribution", color: "#14b8a6", position: [1.2, -1.0, 0.6] as [number, number, number], category: "flywheel" },
-  { name: "Products", color: "#10b981", position: [0, -1.3, 1.0] as [number, number, number], category: "flywheel" },
+  { name: "People", color: "#6366f1", position: [1.1, 0.9, 0.3] as [number, number, number], category: "capability" },
+  { name: "Process", color: "#8b5cf6", position: [-0.6, 1.1, 0.5] as [number, number, number], category: "capability" },
+  { name: "Technology", color: "#a855f7", position: [0.4, 0.6, 1.1] as [number, number, number], category: "capability" },
+  { name: "Community", color: "#06b6d4", position: [-1.0, -0.4, 0.8] as [number, number, number], category: "flywheel" },
+  { name: "Distribution", color: "#14b8a6", position: [0.9, -0.8, 0.4] as [number, number, number], category: "flywheel" },
+  { name: "Products", color: "#10b981", position: [0, -1.0, 0.7] as [number, number, number], category: "flywheel" },
 ];
 
 function VectorArrow({ 
@@ -64,8 +64,8 @@ function VectorArrow({
       </mesh>
       {/* Label */}
       <Text
-        position={[end[0] * 1.2, end[1] * 1.2, end[2] * 1.2]}
-        fontSize={0.15}
+        position={[end[0] * 1.15, end[1] * 1.15, end[2] * 1.15]}
+        fontSize={0.12}
         color={color}
         anchorX="center"
         anchorY="middle"
@@ -199,7 +199,7 @@ export default function VectorSpace() {
       {/* Center - 3D Visualization */}
       <div className="h-[350px] md:h-[400px] order-1 lg:order-2">
         <Canvas
-          camera={{ position: [0, 0, 4], fov: 50 }}
+          camera={{ position: [0, 0, 3.5], fov: 50 }}
           style={{ background: "transparent" }}
         >
           <ambientLight intensity={0.5} />
