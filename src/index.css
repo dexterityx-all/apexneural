@@ -276,4 +276,121 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* ============================================
+   Impossible Triangle CSS Animation
+   ============================================ */
+.impossible-triangle-wrapper {
+  --triangle-duration: 8s;
+  --triangle-scale: 1;
+  --color-x: #8B0000;
+  --color-y: #DC143C;
+  --color-z: #FFFFFF;
+  --cube-size: 28px;
+  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.impossible-triangle-wrapper .view {
+  transform-style: preserve-3d;
+  transform: scale(var(--triangle-scale)) rotateX(-33.5deg) rotateY(45deg);
+  animation: triangle-rotate var(--triangle-duration) linear infinite;
+}
+
+@keyframes triangle-rotate {
+  0% { transform: scale(var(--triangle-scale)) rotateX(-33.5deg) rotateY(45deg); }
+  100% { transform: scale(var(--triangle-scale)) rotateX(-33.5deg) rotateY(405deg); }
+}
+
+.impossible-triangle-wrapper .part {
+  transform-style: preserve-3d;
+  position: absolute;
+}
+
+.impossible-triangle-wrapper .part:nth-child(2) {
+  transform: rotateY(90deg);
+}
+
+.impossible-triangle-wrapper .plane {
+  transform-style: preserve-3d;
+}
+
+.impossible-triangle-wrapper .cube {
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.impossible-triangle-wrapper .plane > .cube {
+  display: inline-block;
+  margin-right: -4px;
+}
+
+.impossible-triangle-wrapper .plane > .cube:nth-child(1) { transform: translateZ(0); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(2) { transform: translateZ(calc(var(--cube-size) * 1)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(3) { transform: translateZ(calc(var(--cube-size) * 2)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(4) { transform: translateZ(calc(var(--cube-size) * 3)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(5) { transform: translateZ(calc(var(--cube-size) * 4)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(6) { transform: translateZ(calc(var(--cube-size) * 5)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(7) { transform: translateZ(calc(var(--cube-size) * 6)); }
+.impossible-triangle-wrapper .plane > .cube:nth-child(8) { transform: translateZ(calc(var(--cube-size) * 7)); }
+
+.impossible-triangle-wrapper .static {
+  transform-style: preserve-3d;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.impossible-triangle-wrapper .part:nth-child(1) .static {
+  transform: translateX(calc(var(--cube-size) * -1)) translateZ(calc(var(--cube-size) * 8));
+}
+
+.impossible-triangle-wrapper .part:nth-child(1) .static .cube:nth-child(1) {
+  transform: translateY(calc(var(--cube-size) * -1));
+}
+
+.impossible-triangle-wrapper .part:nth-child(1) .static .cube:nth-child(2) {
+  transform: translateY(calc(var(--cube-size) * -2));
+}
+
+.impossible-triangle-wrapper .part:nth-child(2) .static {
+  transform: translateX(calc(var(--cube-size) * -1)) translateZ(calc(var(--cube-size) * 8)) translateY(calc(var(--cube-size) * -2));
+}
+
+.impossible-triangle-wrapper .face {
+  position: absolute;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  background: var(--face-color);
+  backface-visibility: visible;
+}
+
+.impossible-triangle-wrapper .face.x {
+  transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+}
+
+.impossible-triangle-wrapper .face.y {
+  transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+}
+
+.impossible-triangle-wrapper .face.z {
+  transform: translateZ(calc(var(--cube-size) / 2));
 }
