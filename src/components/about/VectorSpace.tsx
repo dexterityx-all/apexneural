@@ -1,71 +1,106 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Line, Text } from "@react-three/drei";
+import { Float, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { motion } from "framer-motion";
 
 const vectors = [
-  { name: "People", color: "#6366f1", position: [1.1, 0.9, 0.3] as [number, number, number], category: "capability" },
-  { name: "Process", color: "#8b5cf6", position: [-0.6, 1.1, 0.5] as [number, number, number], category: "capability" },
-  { name: "Technology", color: "#a855f7", position: [0.4, 0.6, 1.1] as [number, number, number], category: "capability" },
-  { name: "Community", color: "#06b6d4", position: [-1.0, -0.4, 0.8] as [number, number, number], category: "flywheel" },
-  { name: "Distribution", color: "#14b8a6", position: [0.9, -0.8, 0.4] as [number, number, number], category: "flywheel" },
-  { name: "Products", color: "#10b981", position: [0, -1.0, 0.7] as [number, number, number], category: "flywheel" },
+  { name: "People", color: "#6366f1", position: [1.1, 0.8, 0.3] as [number, number, number], category: "capability" },
+  { name: "Process", color: "#8b5cf6", position: [-0.5, 1.0, 0.4] as [number, number, number], category: "capability" },
+  { name: "Technology", color: "#a855f7", position: [0.3, 0.5, 0.9] as [number, number, number], category: "capability" },
+  { name: "Community", color: "#06b6d4", position: [-0.9, -0.3, 0.5] as [number, number, number], category: "flywheel" },
+  { name: "Distribution", color: "#14b8a6", position: [0.8, -0.6, 0.3] as [number, number, number], category: "flywheel" },
+  { name: "Products", color: "#10b981", position: [0, -0.9, 0.5] as [number, number, number], category: "flywheel" },
 ];
 
-function VectorArrow({ 
-  start, 
+function VectorBeam({ 
   end, 
-  color, 
-  name,
-  index 
+  color,
+  name 
 }: { 
-  start: [number, number, number]; 
   end: [number, number, number]; 
-  color: string; 
+  color: string;
   name: string;
-  index: number;
 }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const lineRef = useRef<THREE.Line>(null);
+  const threeColor = useMemo(() => new THREE.Color(color), [color]);
   
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      const pulse = Math.sin(clock.getElapsedTime() * 0.5 + index) * 0.02;
-      groupRef.current.scale.setScalar(1 + pulse);
-    }
-  });
+  const { geometry, quaternion } = useMemo(() => {
+    // Create beam shape with square cross-section (like ImpossibleTriangle)
+    const shape = new THREE.Shape();
+    const size = 0.05;
+    shape.moveTo(-size, -size);
+    shape.lineTo(size, -size);
+    shape.lineTo(size, size);
+    shape.lineTo(-size, size);
+    shape.lineTo(-size, -size);
 
-  const direction = new THREE.Vector3(end[0] - start[0], end[1] - start[1], end[2] - start[2]);
-  const length = direction.length();
-  const arrowEnd: [number, number, number] = [
-    end[0] * 0.85,
-    end[1] * 0.85,
-    end[2] * 0.85,
-  ];
+    const direction = new THREE.Vector3(end[0], end[1], end[2]);
+    const len = direction.length();
+    direction.normalize();
+
+    const path = new THREE.LineCurve3(
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, 0, len)
+    );
+
+    const extrudeSettings = {
+      steps: 2,
+      bevelEnabled: false,
+      extrudePath: path,
+    };
+
+    const geo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+    // Calculate rotation to align with beam direction
+    const quat = new THREE.Quaternion();
+    quat.setFromUnitVectors(new THREE.Vector3(0, 0, 1), direction);
+
+    return { geometry: geo, quaternion: quat };
+  }, [end]);
+
+  // Label position slightly beyond the end block
+  const labelPos = useMemo(() => {
+    const direction = new THREE.Vector3(end[0], end[1], end[2]).normalize();
+    return [
+      end[0] + direction.x * 0.22,
+      end[1] + direction.y * 0.22,
+      end[2] + direction.z * 0.22
+    ] as [number, number, number];
+  }, [end]);
 
   return (
-    <group ref={groupRef}>
-      <Line
-        points={[start, arrowEnd]}
-        color={color}
-        lineWidth={2}
-        transparent
-        opacity={0.8}
-      />
-      {/* Arrow head */}
-      <mesh position={end}>
-        <sphereGeometry args={[0.08, 16, 16]} />
+    <group>
+      {/* Beam */}
+      <mesh
+        geometry={geometry}
+        position={[0, 0, 0]}
+        quaternion={quaternion}
+      >
         <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.5}
+          color={threeColor}
+          metalness={0.3}
+          roughness={0.4}
+          emissive={threeColor}
+          emissiveIntensity={0.15}
         />
       </mesh>
+      
+      {/* End block (like corner joints in ImpossibleTriangle) */}
+      <mesh position={end}>
+        <boxGeometry args={[0.12, 0.12, 0.12]} />
+        <meshStandardMaterial
+          color={threeColor}
+          metalness={0.3}
+          roughness={0.4}
+          emissive={threeColor}
+          emissiveIntensity={0.2}
+        />
+      </mesh>
+
       {/* Label */}
       <Text
-        position={[end[0] * 1.15, end[1] * 1.15, end[2] * 1.15]}
-        fontSize={0.12}
+        position={labelPos}
+        fontSize={0.1}
         color={color}
         anchorX="center"
         anchorY="middle"
@@ -79,62 +114,59 @@ function VectorArrow({
 function CentralNode() {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  useFrame(({ clock }) => {
+  useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = clock.getElapsedTime() * 0.2;
-      const scale = 0.15 + Math.sin(clock.getElapsedTime() * 0.8) * 0.02;
-      meshRef.current.scale.setScalar(scale / 0.15);
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.5;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.1} floatIntensity={0.1}>
-      <mesh ref={meshRef}>
-        <octahedronGeometry args={[0.15, 0]} />
-        <meshStandardMaterial
-          color="#f59e0b"
-          emissive="#f59e0b"
-          emissiveIntensity={0.4}
-          metalness={0.8}
-          roughness={0.2}
-        />
-      </mesh>
-      <mesh>
-        <sphereGeometry args={[0.25, 16, 16]} />
-        <meshBasicMaterial
-          color="#fbbf24"
-          transparent
-          opacity={0.15}
-        />
-      </mesh>
-    </Float>
+    <mesh ref={meshRef}>
+      <boxGeometry args={[0.18, 0.18, 0.18]} />
+      <meshStandardMaterial
+        color="#ef4444"
+        metalness={0.4}
+        roughness={0.3}
+        emissive="#ef4444"
+        emissiveIntensity={0.3}
+      />
+    </mesh>
   );
 }
 
-function VectorScene() {
+function VectorSpaceScene() {
   const groupRef = useRef<THREE.Group>(null);
-  
-  useFrame(({ clock }) => {
+
+  useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.1) * 0.15;
-      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.08) * 0.05;
+      // Slow rotation like ImpossibleTriangle
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.15) * 0.1;
     }
   });
 
   return (
-    <group ref={groupRef}>
-      <CentralNode />
-      {vectors.map((v, i) => (
-        <VectorArrow
-          key={v.name}
-          start={[0, 0, 0]}
-          end={v.position}
-          color={v.color}
-          name={v.name}
-          index={i}
-        />
-      ))}
-    </group>
+    <Float
+      speed={2}
+      rotationIntensity={0.2}
+      floatIntensity={0.3}
+    >
+      <group ref={groupRef}>
+        {/* Central node */}
+        <CentralNode />
+        
+        {/* Vector beams */}
+        {vectors.map((vector) => (
+          <VectorBeam
+            key={vector.name}
+            end={vector.position}
+            color={vector.color}
+            name={vector.name}
+          />
+        ))}
+      </group>
+    </Float>
   );
 }
 
@@ -155,7 +187,7 @@ function VectorInfo({ title, description, color, delay }: VectorInfoProps) {
       className="flex items-start gap-3"
     >
       <div 
-        className="w-3 h-3 rounded-full mt-1.5 shrink-0"
+        className="w-3 h-3 rounded-sm mt-1.5 shrink-0"
         style={{ backgroundColor: color }}
       />
       <div>
@@ -197,15 +229,18 @@ export default function VectorSpace() {
       </div>
 
       {/* Center - 3D Visualization */}
-      <div className="h-[350px] md:h-[400px] order-1 lg:order-2">
+      <div className="h-[320px] md:h-[380px] order-1 lg:order-2">
         <Canvas
-          camera={{ position: [0, 0, 3.5], fov: 50 }}
+          camera={{ position: [0, 0, 3], fov: 50 }}
           style={{ background: "transparent" }}
+          gl={{ alpha: true, antialias: true }}
         >
           <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={0.6} />
-          <pointLight position={[-10, -10, -5]} intensity={0.3} color="#6366f1" />
-          <VectorScene />
+          <directionalLight position={[5, 5, 5]} intensity={1} />
+          <directionalLight position={[-5, -5, -5]} intensity={0.3} />
+          <pointLight position={[0, 0, 2]} intensity={0.5} color="#ef4444" />
+          
+          <VectorSpaceScene />
         </Canvas>
       </div>
 
