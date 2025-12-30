@@ -19,7 +19,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-const VisionGlobe = lazy(() => import("@/components/about/VisionGlobe"));
+const DeterministicTriangle = lazy(() => import("@/components/about/DeterministicTriangle"));
 const VectorSpace = lazy(() => import("@/components/about/VectorSpace"));
 
 const coreValues = [
@@ -182,7 +182,7 @@ export default function About() {
                     </div>
                   </div>
                 }>
-                  <VisionGlobe />
+                  <DeterministicTriangle />
                 </Suspense>
                 <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none">
                   <p className="text-lg font-serif italic text-foreground/80">
