@@ -16,7 +16,14 @@ const navigation = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    // Initialize from localStorage or system preference
+    const stored = localStorage.getItem("theme");
+    if (stored) {
+      return stored === "dark";
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -27,15 +34,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Apply theme on mount and when isDark changes
   useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setIsDark(isDarkMode);
-  }, []);
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    document.documentElement.classList.toggle("dark", newIsDark);
+    setIsDark(!isDark);
   };
 
   useEffect(() => {
