@@ -1,12 +1,16 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, Linkedin } from "lucide-react";
 import { CaseStudyAuthor } from "@/data/caseStudyDetails";
+import { getAuthorByName } from "@/data/authors";
 
 interface AuthorCardProps {
   author: CaseStudyAuthor;
 }
 
 export function AuthorCard({ author }: AuthorCardProps) {
+  const authorProfile = getAuthorByName(author.name);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -21,11 +25,21 @@ export function AuthorCard({ author }: AuthorCardProps) {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Avatar and Stats */}
         <div className="flex flex-col items-center md:items-start">
-          <img
-            src={author.avatar}
-            alt={author.name}
-            className="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border-2 border-border/50"
-          />
+          {authorProfile ? (
+            <Link to={`/authors/${authorProfile.slug}`}>
+              <img
+                src={author.avatar}
+                alt={author.name}
+                className="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border-2 border-border/50 hover:border-primary/50 transition-colors"
+              />
+            </Link>
+          ) : (
+            <img
+              src={author.avatar}
+              alt={author.name}
+              className="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border-2 border-border/50"
+            />
+          )}
           
           <div className="flex gap-6 mt-6">
             <div className="text-center">
@@ -49,9 +63,17 @@ export function AuthorCard({ author }: AuthorCardProps) {
         
         {/* Info */}
         <div className="flex-1">
-          <h4 className="text-xl font-serif font-semibold text-foreground mb-1">
-            {author.name}
-          </h4>
+          {authorProfile ? (
+            <Link to={`/authors/${authorProfile.slug}`} className="hover:text-primary transition-colors">
+              <h4 className="text-xl font-serif font-semibold text-foreground mb-1">
+                {author.name}
+              </h4>
+            </Link>
+          ) : (
+            <h4 className="text-xl font-serif font-semibold text-foreground mb-1">
+              {author.name}
+            </h4>
+          )}
           <p className="text-sm text-primary font-medium mb-1">
             {author.role}
           </p>
@@ -64,13 +86,15 @@ export function AuthorCard({ author }: AuthorCardProps) {
           </p>
           
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted text-sm font-medium text-foreground hover:bg-muted/80 transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-              View All Articles
-            </a>
+            {authorProfile && (
+              <Link
+                to={`/authors/${authorProfile.slug}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted text-sm font-medium text-foreground hover:bg-muted/80 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View All Articles
+              </Link>
+            )}
             <a
               href={author.linkedIn}
               target="_blank"
