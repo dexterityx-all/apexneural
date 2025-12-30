@@ -7,19 +7,22 @@ import { useEffect, useState } from "react";
 
 const footerLinks = {
   ecosystem: [
-    { name: "Portfolios", href: "/portfolios" },
-    { name: "Products", href: "/products" },
-    { name: "Projects", href: "/case-studies" },
+    { name: "Portfolios", href: "/ecosystem#strategic-investments" },
+    { name: "Products", href: "/ecosystem#product-suite" },
+    { name: "Projects", href: "/ecosystem#technology-case-studies" },
+    { name: "Case Studies", href: "/case-studies" },
   ],
   products: [
-    { name: "Prism", href: "/prism" },
-    { name: "DBaaS", href: "/dbaas" },
-    { name: "Kutum", href: "/kutum" },
+    { name: "Prism", href: "https://prism.apexneural.cloud/", external: true },
+    { name: "Kutum", href: "https://kutum.apexneural.cloud/", external: true },
+    { name: "E2E QA Lab", href: "https://e2eqalab.apexneural.cloud/", external: true },
+    { name: "Data Labelling", href: "https://agenticlabel.apexneural.cloud/", external: true },
+    { name: "Triverse Academy", href: "https://triverseacademy.apexneural.cloud/", external: true },
+    { name: "DBaaS Suite", href: "https://dbaas.apexneural.cloud/search", external: true },
   ],
   company: [
     { name: "About", href: "/about" },
     { name: "Case Studies", href: "/case-studies" },
-    { name: "Contact", href: "/contact" },
   ],
 };
 
@@ -101,12 +104,23 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-foreground hover:text-primary transition-colors link-underline"
-                  >
-                    {link.name}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors link-underline"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-foreground hover:text-primary transition-colors link-underline"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -128,6 +142,25 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            
+            {/* Contact Info */}
+            <div className="mt-6 pt-4 border-t border-border/30">
+              <h5 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground mb-3">
+                Contact
+              </h5>
+              <address className="not-italic text-sm text-muted-foreground space-y-2">
+                <p>Flat 803, Mittal Tower, MG Road</p>
+                <p>Bangalore, Karnataka 560001</p>
+                <p className="pt-2">
+                  <a 
+                    href="mailto:contact@apexneural.com" 
+                    className="text-foreground hover:text-primary transition-colors"
+                  >
+                    contact@apexneural.com
+                  </a>
+                </p>
+              </address>
+            </div>
           </div>
         </div>
 
