@@ -3,6 +3,39 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import * as THREE from "three";
 
+// Particle that flows along a triangular path - representing data/value flow
+function FlowingParticle({ delay, speed, color }: { delay: number; speed: number; color: string }) {
+  const ref = useRef<THREE.Mesh>(null);
+  
+  // Triangle vertices for the path
+  const vertices = useMemo(() => [
+    new THREE.Vector3(0, 1.5, 0),      // Top
+    new THREE.Vector3(-1.3, -0.75, 0), // Bottom left
+    new THREE.Vector3(1.3, -0.75, 0),  // Bottom right
+  ], []);
+  
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    
+    const t = ((clock.getElapsedTime() * speed + delay) % 3);
+    const segment = Math.floor(t);
+    const localT = t - segment;
+    
+    const start = vertices[segment];
+    const end = vertices[(segment + 1) % 3];
+    
+    ref.current.position.lerpVectors(start, end, localT);
+    ref.current.position.z = Math.sin(clock.getElapsedTime() * 2 + delay) * 0.1;
+  });
+  
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[0.04, 8, 8]} />
+      <meshBasicMaterial color={color} transparent opacity={0.9} />
+    </mesh>
+  );
+}
+
 // Outer deterministic triangle - stable, structured
 function DeterministicFrame() {
   const outerPoints = useMemo(() => {
@@ -25,7 +58,7 @@ function DeterministicFrame() {
   );
 }
 
-// Inner non-deterministic triangle - the core
+// Inner non-deterministic triangle - stable core (no pulsing)
 function NonDeterministicCore() {
   const triangleGeometry = useMemo(() => {
     const shape = new THREE.Shape();
@@ -49,7 +82,7 @@ function NonDeterministicCore() {
         />
       </mesh>
       
-      {/* Core triangle */}
+      {/* Core triangle - static, no pulsing */}
       <mesh geometry={triangleGeometry} position={[0, 0, 0.01]}>
         <meshBasicMaterial
           color="#818cf8"
@@ -114,6 +147,67 @@ function CornerDots() {
   );
 }
 
+// Orbital particles representing emergent AI capabilities
+function OrbitalParticles() {
+  const groupRef = useRef<THREE.Group>(null);
+  
+  const particles = useMemo(() => {
+    const result: { angle: number; radius: number; speed: number; size: number }[] = [];
+    for (let i = 0; i < 12; i++) {
+      result.push({
+        angle: (i / 12) * Math.PI * 2,
+        radius: 1.8 + Math.random() * 0.4,
+        speed: 0.3 + Math.random() * 0.2,
+        size: 0.02 + Math.random() * 0.02,
+      });
+    }
+    return result;
+  }, []);
+  
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      groupRef.current.children.forEach((child, i) => {
+        const p = particles[i];
+        const t = clock.getElapsedTime() * p.speed + p.angle;
+        child.position.x = Math.cos(t) * p.radius;
+        child.position.y = Math.sin(t) * p.radius;
+        child.position.z = Math.sin(t * 2) * 0.15;
+      });
+    }
+  });
+  
+  return (
+    <group ref={groupRef}>
+      {particles.map((p, i) => (
+        <mesh key={i}>
+          <sphereGeometry args={[p.size, 6, 6]} />
+          <meshBasicMaterial 
+            color={i % 2 === 0 ? "#a5b4fc" : "#c7d2fe"} 
+            transparent 
+            opacity={0.7} 
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+// Data streams flowing along the triangle
+function DataStreams() {
+  return (
+    <group>
+      {[0, 0.5, 1, 1.5, 2, 2.5].map((delay, i) => (
+        <FlowingParticle 
+          key={i} 
+          delay={delay} 
+          speed={0.5} 
+          color={i % 2 === 0 ? "#c4b5fd" : "#818cf8"} 
+        />
+      ))}
+    </group>
+  );
+}
+
 // Main scene with gentle rotation
 function TriangleScene() {
   const groupRef = useRef<THREE.Group>(null);
@@ -131,7 +225,7 @@ function TriangleScene() {
         {/* Outer deterministic frame */}
         <DeterministicFrame />
         
-        {/* Inner non-deterministic core */}
+        {/* Inner non-deterministic core - stable */}
         <NonDeterministicCore />
         
         {/* Connection beams */}
@@ -139,6 +233,12 @@ function TriangleScene() {
         
         {/* Corner dots */}
         <CornerDots />
+        
+        {/* Flowing data particles */}
+        <DataStreams />
+        
+        {/* Orbital AI particles */}
+        <OrbitalParticles />
       </group>
     </Float>
   );
