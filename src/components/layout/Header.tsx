@@ -62,7 +62,7 @@ export function Header() {
             <img 
               src={isDark ? logoWhite : logoDark} 
               alt="ApexNeural" 
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </motion.div>
         </Link>
