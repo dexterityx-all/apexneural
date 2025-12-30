@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { 
   ArrowRight, 
   Search, 
@@ -12,7 +11,10 @@ import {
   Share2,
   Rocket,
   Package,
-  Layers
+  Layers,
+  TestTube,
+  Tag,
+  School
 } from "lucide-react";
 
 const dbaasPhases = [
@@ -27,18 +29,21 @@ const dbaasPhases = [
     items: [
       {
         icon: Search,
-        name: "DBaaS Platform",
+        name: "DBaaS Research Platform",
         description: "AI-powered market research, competitive analysis, and opportunity identification.",
+        href: "https://dbaas.apexneural.cloud/search",
       },
       {
         icon: FileText,
         name: "DBaaS E-Books",
         description: "Automated lead magnet creation with AI-generated content and design.",
+        href: "https://bookgen.apexneural.cloud/",
       },
       {
         icon: Globe,
         name: "Landing Page Generation",
         description: "Conversion-optimized landing pages created and deployed automatically.",
+        href: "https://dbaas.apexneural.cloud/search",
       },
     ],
   },
@@ -55,16 +60,19 @@ const dbaasPhases = [
         icon: Code,
         name: "Apex SaaS Framework",
         description: "Pre-built components, authentication, payments, and infrastructure ready to go.",
+        href: "https://apexsaaskit.apexneural.cloud/",
       },
       {
         icon: GraduationCap,
         name: "DBaaS E-Courses",
         description: "Transform expertise into online courses with automated curriculum design.",
+        href: "https://course.apexneural.cloud/",
       },
       {
         icon: Layers,
         name: "Full-Stack Applications",
         description: "AI-assisted development from frontend to backend, database to deployment.",
+        href: "https://apexsaaskit.apexneural.cloud/",
       },
     ],
   },
@@ -79,18 +87,21 @@ const dbaasPhases = [
     items: [
       {
         icon: BookOpen,
-        name: "Content Phase Platform",
+        name: "Content Factory Platform",
         description: "AI content generation for blogs, social media, and email campaigns.",
+        href: "https://ai-content-web.apexneural.cloud/",
       },
       {
         icon: Share2,
         name: "Multi-Platform Distribution",
         description: "Automated publishing across social media, email, and content networks.",
+        href: "https://ai-content-web.apexneural.cloud/",
       },
       {
         icon: Megaphone,
         name: "Growth Tools",
         description: "Analytics, A/B testing, and optimization to maximize conversions.",
+        href: "https://dbaas.apexneural.cloud/search",
       },
     ],
   },
@@ -100,20 +111,47 @@ const otherProducts = [
   {
     name: "Prism",
     subtitle: "AI Recruitment Automation",
-    description: "End-to-end hiring platform that screens, evaluates, and ranks candidates using conversational AI.",
+    description: "End-to-end hiring platform that screens, evaluates, and ranks candidates using conversational AI. Reduces manual work by 80-85%.",
     icon: Package,
     color: "text-rose-400",
     bgColor: "bg-rose-400/10",
-    href: "/products/prism",
+    href: "https://prism.apexneural.cloud/",
   },
   {
     name: "Kutum",
-    subtitle: "Family Document OS",
-    description: "Secure family document management with AI-powered organization, search, and legacy planning.",
+    subtitle: "Family Information OS",
+    description: "Secure family document management with AI-powered organization, timely reminders, and legacy planning for what matters most.",
     icon: Package,
     color: "text-teal-400",
     bgColor: "bg-teal-400/10",
-    href: "/products/kutum",
+    href: "https://kutum.apexneural.cloud/",
+  },
+  {
+    name: "E2E QA Lab",
+    subtitle: "Automated Testing Platform",
+    description: "Production-ready platform for automated code analysis, E2E testing with pytest, Jest, Playwright, Cypress, and AI-powered improvement recommendations.",
+    icon: TestTube,
+    color: "text-emerald-400",
+    bgColor: "bg-emerald-400/10",
+    href: "https://e2eqalab.apexneural.cloud/",
+  },
+  {
+    name: "NexusAI Labelling",
+    subtitle: "AI Data Labelling Platform",
+    description: "Automate data labeling workflow with advanced AI agents. Process text, images, audio with dynamic categorization and quality assurance.",
+    icon: Tag,
+    color: "text-amber-400",
+    bgColor: "bg-amber-400/10",
+    href: "https://agenticlabel.apexneural.cloud/",
+  },
+  {
+    name: "Triverse Academy",
+    subtitle: "AI Learning Architecture",
+    description: "Three-phase AI mastery across MindForge, VisionStream, and CodeSphere. From implementation to architecture to leadership.",
+    icon: School,
+    color: "text-indigo-400",
+    bgColor: "bg-indigo-400/10",
+    href: "https://triverseacademy.apexneural.cloud/",
   },
 ];
 
@@ -195,15 +233,24 @@ export function DBaaSSection() {
 
                   <div className="space-y-4">
                     {phase.items.map((item) => (
-                      <div key={item.name} className="flex items-start gap-3">
+                      <a 
+                        key={item.name} 
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-3 group hover:bg-background/50 p-2 -mx-2 rounded-lg transition-colors"
+                      >
                         <div className={`p-2 rounded-lg ${phase.bgColor} flex-shrink-0`}>
                           <item.icon className={`h-4 w-4 ${phase.color}`} />
                         </div>
-                        <div>
-                          <h5 className="font-medium text-sm">{item.name}</h5>
+                        <div className="flex-1">
+                          <h5 className="font-medium text-sm group-hover:text-primary transition-colors flex items-center gap-1">
+                            {item.name}
+                            <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </h5>
                           <p className="text-xs text-muted-foreground">{item.description}</p>
                         </div>
-                      </div>
+                      </a>
                     ))}
                   </div>
                 </motion.div>
@@ -224,7 +271,7 @@ export function DBaaSSection() {
             More Products
           </motion.h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherProducts.map((product, index) => (
               <motion.div
                 key={product.name}
@@ -233,9 +280,11 @@ export function DBaaSSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link
-                  to={product.href}
-                  className="group block p-6 rounded-xl bg-card border border-border/50 hover:border-ecosystem-products/30 transition-all hover:shadow-lg"
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-6 rounded-xl bg-card border border-border/50 hover:border-ecosystem-products/30 transition-all hover:shadow-lg h-full"
                 >
                   <div className="flex items-start gap-4">
                     <div className={`p-3 rounded-lg ${product.bgColor}`}>
@@ -252,7 +301,7 @@ export function DBaaSSection() {
                       <p className="text-sm text-muted-foreground">{product.description}</p>
                     </div>
                   </div>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
