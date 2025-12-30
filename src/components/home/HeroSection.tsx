@@ -28,7 +28,7 @@ export function HeroSection() {
       <div className="container-wide relative z-10 pt-20">
         <div className="flex flex-col items-center justify-center text-center min-h-[70vh]">
           <p className="text-sm font-mono uppercase tracking-[0.3em] text-foreground/60 mb-6 animate-fade-in">
-            AI Ecosystem Studio
+            AI Transformation Studio
           </p>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1] mb-6 text-foreground animate-fade-in-up max-w-4xl">
