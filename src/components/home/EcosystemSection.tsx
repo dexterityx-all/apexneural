@@ -17,7 +17,7 @@ const ecosystemPillars = [
     ],
     icon: Briefcase,
     color: "portfolios" as const,
-    href: "/portfolios",
+    href: "/ecosystem#strategic-investments",
   },
   {
     id: "products",
@@ -32,7 +32,7 @@ const ecosystemPillars = [
     ],
     icon: Package,
     color: "products" as const,
-    href: "/products",
+    href: "/ecosystem#product-suite",
   },
   {
     id: "projects",
@@ -47,7 +47,7 @@ const ecosystemPillars = [
     ],
     icon: FolderOpen,
     color: "projects" as const,
-    href: "/case-studies",
+    href: "/ecosystem#technology-case-studies",
   },
 ];
 

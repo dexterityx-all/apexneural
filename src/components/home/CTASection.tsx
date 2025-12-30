@@ -47,7 +47,7 @@ export function CTASection() {
               size="lg"
               variant="outline"
               asChild
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground"
             >
               <Link to="/case-studies" className="group">
                 Explore Our Work

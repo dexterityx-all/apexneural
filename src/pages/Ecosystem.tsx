@@ -157,7 +157,7 @@ export default function Ecosystem() {
       <DBaaSSection />
 
       {/* Projects Section */}
-      <section className="section-padding">
+      <section id="technology-case-studies" className="section-padding">
         <div className="container-wide">
           {/* Section Header */}
           <motion.div

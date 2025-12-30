@@ -62,7 +62,7 @@ const investmentPrinciples = [
 
 export function InvestmentPhilosophy() {
   return (
-    <section className="section-padding">
+    <section id="strategic-investments" className="section-padding">
       <div className="container-wide">
         {/* Section Header */}
         <motion.div

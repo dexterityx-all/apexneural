@@ -44,7 +44,7 @@ export function HeroSection() {
             we're shaping the future of intelligent business.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up mb-16" style={{ animationDelay: "0.4s" }}>
             <Button size="lg" onClick={scrollToEcosystem}>
               Discover Our Ecosystem
             </Button>

@@ -157,7 +157,7 @@ const otherProducts = [
 
 export function DBaaSSection() {
   return (
-    <section className="section-padding bg-surface">
+    <section id="product-suite" className="section-padding bg-surface">
       <div className="container-wide">
         {/* Section Header */}
         <motion.div
