@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clock, ArrowUpRight } from "lucide-react";
 import { CaseStudy } from "@/data/caseStudies";
+import { getAuthorByName } from "@/data/authors";
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy;
@@ -9,6 +10,8 @@ interface CaseStudyCardProps {
 }
 
 export function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
+  const author = getAuthorByName(caseStudy.author.name);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -72,9 +75,19 @@ export function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
               alt={caseStudy.author.name}
               className="w-8 h-8 rounded-full object-cover"
             />
-            <span className="text-sm font-medium text-foreground">
-              {caseStudy.author.name}
-            </span>
+            {author ? (
+              <Link
+                to={`/authors/${author.slug}`}
+                onClick={(e) => e.stopPropagation()}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                {caseStudy.author.name}
+              </Link>
+            ) : (
+              <span className="text-sm font-medium text-foreground">
+                {caseStudy.author.name}
+              </span>
+            )}
           </div>
           <span className="text-xs text-muted-foreground">{caseStudy.date}</span>
         </div>
