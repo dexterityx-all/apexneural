@@ -29,6 +29,7 @@ const ecosystemPillars = [
       { name: "Prism", desc: "AI Recruitment Automation" },
       { name: "DBaaS", desc: "Digital Business as a Service" },
       { name: "Kutum", desc: "Family Document OS" },
+      { name: "Neural Ops", desc: "AI Operations Platform" },
     ],
     icon: Package,
     color: "products" as const,
