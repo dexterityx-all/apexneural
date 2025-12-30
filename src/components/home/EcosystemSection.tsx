@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, Briefcase, Package, FolderOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -73,6 +73,19 @@ const colorClasses = {
 };
 
 export function EcosystemSection() {
+  const navigate = useNavigate();
+
+  const handlePillarClick = (href: string) => {
+    const [path, hash] = href.split('#');
+    navigate(path);
+    setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <section id="ecosystem" className="section-padding bg-surface">
       <div className="container-wide">
@@ -106,10 +119,10 @@ export function EcosystemSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Link
-                to={pillar.href}
+              <button
+                onClick={() => handlePillarClick(pillar.href)}
                 className={cn(
-                  "group block h-full p-8 rounded-2xl border bg-card transition-all duration-300",
+                  "group block h-full p-8 rounded-2xl border bg-card transition-all duration-300 text-left w-full",
                   colorClasses[pillar.color].border,
                   colorClasses[pillar.color].hover,
                   "hover:shadow-lg hover:-translate-y-1"
@@ -170,7 +183,7 @@ export function EcosystemSection() {
                   <span>Explore {pillar.title}</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
+              </button>
             </motion.div>
           ))}
         </div>

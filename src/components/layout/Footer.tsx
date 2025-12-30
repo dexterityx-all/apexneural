@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, Twitter } from "lucide-react";
 import logoDark from "@/assets/logo-dark.png";
@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 
 const footerLinks = {
   ecosystem: [
-    { name: "Portfolios", href: "/ecosystem#strategic-investments" },
-    { name: "Products", href: "/ecosystem#product-suite" },
-    { name: "Projects", href: "/ecosystem#technology-case-studies" },
+    { name: "Portfolios", href: "/ecosystem#strategic-investments", isHash: true },
+    { name: "Products", href: "/ecosystem#product-suite", isHash: true },
+    { name: "Projects", href: "/ecosystem#technology-case-studies", isHash: true },
     { name: "Case Studies", href: "/case-studies" },
   ],
   products: [
@@ -33,6 +33,7 @@ const socialLinks = [
 
 export function Footer() {
   const [isDark, setIsDark] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkDark = () => {
@@ -43,6 +44,17 @@ export function Footer() {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     return () => observer.disconnect();
   }, []);
+
+  const handleHashLink = (href: string) => {
+    const [path, hash] = href.split('#');
+    navigate(path);
+    setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <footer className="border-t border-border bg-surface">
@@ -55,7 +67,7 @@ export function Footer() {
               <img 
                 src={isDark ? logoWhite : logoDark} 
                 alt="ApexNeural" 
-                className="h-12 w-auto"
+                className="h-16 w-auto"
               />
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
@@ -86,12 +98,21 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.ecosystem.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-foreground hover:text-primary transition-colors link-underline"
-                  >
-                    {link.name}
-                  </Link>
+                  {link.isHash ? (
+                    <button
+                      onClick={() => handleHashLink(link.href)}
+                      className="text-foreground hover:text-primary transition-colors link-underline text-left"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-foreground hover:text-primary transition-colors link-underline"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
