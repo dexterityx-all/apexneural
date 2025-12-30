@@ -24,12 +24,11 @@ const ecosystemPillars = [
     title: "Products",
     subtitle: "Built by ApexNeural",
     description:
-      "Proprietary AI-powered products designed to transform how businesses operate, from recruitment to document management.",
+      "Proprietary AI-powered products designed to transform how businesses operate, from recruitment to document management, including content production and management.",
     items: [
       { name: "Prism", desc: "AI Recruitment Automation" },
       { name: "DBaaS", desc: "Digital Business as a Service" },
       { name: "Kutum", desc: "Family Document OS" },
-      { name: "Neural Ops", desc: "AI Operations Platform" },
     ],
     icon: Package,
     color: "products" as const,
@@ -44,7 +43,7 @@ const ecosystemPillars = [
     items: [
       { name: "47+ Projects", desc: "Across Industries" },
       { name: "AI Integration", desc: "End-to-End Solutions" },
-      { name: "Enterprise Scale", desc: "Global Delivery" },
+      { name: "Enterprise Scale", desc: "Compliant. And private." },
     ],
     icon: FolderOpen,
     color: "projects" as const,

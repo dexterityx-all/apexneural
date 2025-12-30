@@ -228,8 +228,8 @@ export function FeaturedWorkSection() {
                 Featured Work
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold mt-2">
-                Where Hard AI Meets{" "}
-                <span className="italic text-primary">Real Impact</span>
+                Building AI That Solves{" "}
+                <span className="italic text-primary">Complex Challenges</span>
               </h2>
             </div>
             <div className="flex items-center gap-6">
